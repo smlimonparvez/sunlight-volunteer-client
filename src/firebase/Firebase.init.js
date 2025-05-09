@@ -5,13 +5,14 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAdVC9sfz0W619e0mC_PXB-DPQOdrVUJKQ",
-  authDomain: "sunlight-volunteer.firebaseapp.com",
-  projectId: "sunlight-volunteer",
-  storageBucket: "sunlight-volunteer.firebasestorage.app",
-  messagingSenderId: "884056024897",
-  appId: "1:884056024897:web:3bdbb182c231ebe4ada3c0"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export default app;

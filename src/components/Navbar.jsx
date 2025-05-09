@@ -33,7 +33,7 @@ const Navbar = () => {
             : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
         }
       >
-        All Visas
+        All volunteer Need posts
       </NavLink>
       <NavLink
         to="/add-visa"
@@ -43,27 +43,7 @@ const Navbar = () => {
             : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
         }
       >
-        Add Visa
-      </NavLink>
-      <NavLink
-        to="/my-added-visas"
-        className={({ isActive }) =>
-          isActive
-            ? "mr-3 text-base font-semibold text-blue-700 underline"
-            : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
-        }
-      >
-        My Added Visas
-      </NavLink>
-      <NavLink
-        to="/my-visa-applications"
-        className={({ isActive }) =>
-          isActive
-            ? "mr-3 text-base font-semibold text-blue-700 underline"
-            : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
-        }
-      >
-        My Visa applications
+        My Profile
       </NavLink>
     </>
   );
@@ -95,7 +75,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <a className="btn btn-ghost text-xl md:text-2xl">Visa Republic</a>
+        <a className="btn btn-ghost text-xl md:text-2xl">Sunlight Volunteer</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

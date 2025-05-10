@@ -210,7 +210,7 @@ const Navbar = () => {
           </button>
         ) : (
           <div className="mr-5">
-            <Link to="/signin" className="btn btn-ghost">
+            <Link to="/login" className="btn btn-ghost text-base font-semibold">
               Log In
             </Link>
           </div>

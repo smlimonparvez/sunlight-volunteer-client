@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 import { Link, NavLink } from "react-router";
-import DarkMode from "./DarkMode";
+import Darkmode from "./Darkmode";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -188,7 +188,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex gap-2 md:flex-row justify-end">
         {/* dark light mode swap */}
-        <DarkMode></DarkMode>
+        <Darkmode></Darkmode>
 
         {/* user and profile */}
         {user && (

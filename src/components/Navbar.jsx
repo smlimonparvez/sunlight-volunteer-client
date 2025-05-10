@@ -12,43 +12,8 @@ const Navbar = () => {
       .catch(() => {});
   };
 
-  const links = (
-    <>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          isActive
-            ? "mr-3 text-base font-semibold text-blue-700 underline"
-            : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
-        }
-        
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/all-visas"
-        className={({ isActive }) =>
-          isActive
-            ? "mr-3 text-base font-semibold text-blue-700 underline"
-            : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
-        }
-      >
-        All volunteer Need posts
-      </NavLink>
-      <NavLink
-        to="/add-visa"
-        className={({ isActive }) =>
-          isActive
-            ? "mr-3 text-base font-semibold text-blue-700 underline"
-            : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
-        }
-      >
-        My Profile
-      </NavLink>
-    </>
-  );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 border-b">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -59,32 +24,173 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
+              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />
+              />{" "}
             </svg>
           </div>
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            {links}
+            <li>
+              <NavLink
+                to="/all-visas"
+                className={({ isActive }) =>
+                  isActive
+                    ? "mr-3 text-base font-semibold text-blue-700 underline"
+                    : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/all-visas"
+                className={({ isActive }) =>
+                  isActive
+                    ? "mr-3 text-base font-semibold text-blue-700 underline"
+                    : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                }
+              >
+                All volunteer Need posts
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/all-visas"
+                className={({ isActive }) =>
+                  isActive
+                    ? "mr-3 text-base font-semibold text-blue-700 underline"
+                    : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                }
+              >
+                My Profile
+              </NavLink>
+              <ul className="p-2">
+                <li>
+                  <NavLink
+                    to="/all-visas"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "mr-3 text-base font-semibold text-blue-700 underline"
+                        : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                    }
+                  >
+                    Add volunteer Need post
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/all-visas"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "mr-3 text-base font-semibold text-blue-700 underline"
+                        : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                    }
+                  >
+                    Manage My Posts
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
-
-        <a className="btn btn-ghost text-xl md:text-2xl">Sunlight Volunteer</a>
+        <a className="btn btn-ghost text-xl">
+          {" "}
+          <img
+            className="w-10 h-10"
+            src="https://i.postimg.cc/DfjxTLTr/volunteer-logo-removebg-preview.png "
+            alt=""
+          />
+          Sunlight Volunteer
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            {" "}
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "mr-3 text-base font-semibold text-blue-700 underline"
+                  : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            {" "}
+            <NavLink
+              to="/all-visas"
+              className={({ isActive }) =>
+                isActive
+                  ? "mr-3 text-base font-semibold text-blue-700 underline"
+                  : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+              }
+            >
+              All volunteer Need posts
+            </NavLink>
+          </li>
+          <li>
+            <details>
+              <summary>
+                {" "}
+                <NavLink
+                  to="/all-visas"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "mr-3 text-base font-semibold text-blue-700 underline"
+                      : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                  }
+                >
+                  My Profile
+                </NavLink>
+              </summary>
+              <ul className="p-2">
+                <li>
+                  {" "}
+                  <NavLink
+                    to="/all-visas"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "mr-3 text-base font-semibold text-blue-700 underline"
+                        : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                    }
+                  >
+                    Add volunteer Need post
+                  </NavLink>
+                </li>
+                <li>
+                  {" "}
+                  <NavLink
+                    to="/all-visas"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "mr-3 text-base font-semibold text-blue-700 underline"
+                        : "mr-3 text-gray-500 text-base font-semibold hover:text-blue-700 hover:underline"
+                    }
+                  >
+                    Manage My Posts
+                  </NavLink>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
       </div>
       <div className="navbar-end flex gap-2 md:flex-row justify-end">
-        
         {/* dark light mode swap */}
         <DarkMode></DarkMode>
 
+        {/* user and profile */}
         {user && (
           <div
             className="flex justify-center items-center gap-1 md:mr-2 tooltip-left tooltip"
@@ -103,12 +209,9 @@ const Navbar = () => {
             Log Out
           </button>
         ) : (
-          <div className="flex flex-col md:flex-row gap-2">
-            <Link to="/signin" className="btn">
-              Sign In
-            </Link>
-            <Link to="/signup" className="btn">
-              Sign Up
+          <div className="mr-5">
+            <Link to="/signin" className="btn btn-ghost">
+              Log In
             </Link>
           </div>
         )}

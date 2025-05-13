@@ -88,6 +88,7 @@ const Register = () => {
               type="text"
               className="input"
               placeholder="Your Name"
+              required
             />
             <label className="fieldset-label">Photo URL</label>
             <input
@@ -95,6 +96,7 @@ const Register = () => {
               type="text"
               className="input"
               placeholder="Photo URL"
+              required
             />
             <label className="fieldset-label">Email</label>
             <input
@@ -102,6 +104,7 @@ const Register = () => {
               type="email"
               className="input"
               placeholder="Email"
+              required
             />
             <label className="fieldset-label">Password</label>
             <input
@@ -109,6 +112,7 @@ const Register = () => {
               type={showPass ? "text" : "password"}
               className="input"
               placeholder="Password"
+              required
             />
             {errorMessage && <p className="text-red-600">{errorMessage}</p>}
             <button className="btn btn-neutral mt-4">Sign up</button>

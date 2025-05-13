@@ -158,7 +158,7 @@ const Navbar = () => {
                 <li>
                   {" "}
                   <NavLink
-                    to="/all-visas"
+                    to="/add-volunteer"
                     className={({ isActive }) =>
                       isActive
                         ? "mr-3 text-base font-semibold text-blue-700 underline"
@@ -186,14 +186,14 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end flex gap-2 md:flex-row justify-end">
+      <div className="navbar-end flex flex-col gap-2 md:flex-row items-end md:items-center pr-3">
         {/* dark light mode swap */}
         <Darkmode></Darkmode>
 
         {/* user and profile */}
         {user && (
           <div
-            className="flex justify-center items-center gap-1 md:mr-2 tooltip-left tooltip"
+            className="tooltip-left tooltip"
             data-tip={`Welcome, ${user.displayName}`}
           >
             <img

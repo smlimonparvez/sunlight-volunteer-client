@@ -51,7 +51,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/all-visas"
+                to="/posts"
                 className={({ isActive }) =>
                   isActive
                     ? "mr-3 text-base font-semibold text-blue-700 underline"
@@ -63,7 +63,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/all-visas"
+                to="/all"
                 className={({ isActive }) =>
                   isActive
                     ? "mr-3 text-base font-semibold text-blue-700 underline"
@@ -129,7 +129,7 @@ const Navbar = () => {
           <li>
             {" "}
             <NavLink
-              to="/all-visas"
+              to="/posts"
               className={({ isActive }) =>
                 isActive
                   ? "mr-3 text-base font-semibold text-blue-700 underline"
@@ -144,7 +144,7 @@ const Navbar = () => {
               <summary>
                 {" "}
                 <NavLink
-                  to="/all-visas"
+                  to="/all"
                   className={({ isActive }) =>
                     isActive
                       ? "mr-3 text-base font-semibold text-blue-700 underline"

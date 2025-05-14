@@ -42,7 +42,7 @@ const UpdateMyPage = () => {
         ...post,
         deadline: startDate,
       };
-      const response = await axios.post(`http://localhost:5000/update-my-post/${id}`, postData);
+      const response = await axios.put(`http://localhost:5000/update-my-post/${id}`, postData);
       if (response.status === 200) {
         Swal.fire({
           title: "Post Updated Successfully!",
@@ -65,7 +65,7 @@ const UpdateMyPage = () => {
   return (
     <div className="">
       <h1 className="text-4xl font-bold text-center my-5 p-5">
-        UPdate My Volunteer Need Post
+        Update My Volunteer Need Post
       </h1>
       <form
         onSubmit={handleSubmitUpdate}

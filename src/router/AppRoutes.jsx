@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import PostDetails from "../pages/PostDetails";
 import BeAVolunteer from "../pages/BeAVolunteer";
 import ManageMyPost from "../pages/ManageMyPost";
+import UpdateMyPage from "../pages/UpdateMyPage";
 
 const AppRoutes = () => {
   return (
@@ -48,6 +49,14 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <ManageMyPost />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="update-my-post/:id"
+          element={
+            <PrivateRoute>
+              <UpdateMyPage />
             </PrivateRoute>
           }
         />

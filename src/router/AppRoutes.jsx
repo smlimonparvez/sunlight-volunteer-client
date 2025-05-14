@@ -44,7 +44,7 @@ const AppRoutes = () => {
           }
         />
         <Route
-          path="manage-my-post"
+          path="manage-my-posts"
           element={
             <PrivateRoute>
               <ManageMyPost />

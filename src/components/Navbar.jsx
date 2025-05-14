@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 import { Link, NavLink } from "react-router";
 import Darkmode from "./Darkmode";
@@ -39,7 +39,7 @@ const Navbar = () => {
           >
             <li>
               <NavLink
-                to="/all-visas"
+                to="/"
                 className={({ isActive }) =>
                   isActive
                     ? "mr-3 text-base font-semibold text-blue-700 underline"
@@ -75,7 +75,7 @@ const Navbar = () => {
               <ul className="p-2">
                 <li>
                   <NavLink
-                    to="/all-visas"
+                    to="/add-volunteer"
                     className={({ isActive }) =>
                       isActive
                         ? "mr-3 text-base font-semibold text-blue-700 underline"
@@ -87,7 +87,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/all-visas"
+                    to="/manage-my-posts"
                     className={({ isActive }) =>
                       isActive
                         ? "mr-3 text-base font-semibold text-blue-700 underline"
@@ -154,7 +154,7 @@ const Navbar = () => {
                   My Profile
                 </NavLink>
               </summary>
-              <ul className="p-2">
+              <ul className="p-2 z-10 w-48">
                 <li>
                   {" "}
                   <NavLink
@@ -171,7 +171,7 @@ const Navbar = () => {
                 <li>
                   {" "}
                   <NavLink
-                    to="/all-visas"
+                    to="/manage-my-posts"
                     className={({ isActive }) =>
                       isActive
                         ? "mr-3 text-base font-semibold text-blue-700 underline"

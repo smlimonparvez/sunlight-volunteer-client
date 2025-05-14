@@ -1,66 +1,75 @@
-import React, { useContext, useState } from "react";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 import Swal from "sweetalert2";
 
-const AddVolunteer = () => {
-  const { user } = useContext(AuthContext);
+const BeAVolunteer = () => {
+  const { user, setLoading } = useContext(AuthContext);
+  const { id } = useParams();
+  const [post, setPost] = useState({});
   const [startDate, setStartDate] = useState(new Date());
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [suggestion, setSuggestion] = useState("");
 
-  const [formData, setFormData] = useState({
-    thumbnail_image: "",
-    post_title: "",
-    category: "",
-    location: "",
-    description: "",
-    total_volunteer_need: "",
-    organizer_name: user?.displayName,
-    organizer_email: user?.email,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/post-details/${id}`)
+      .then((res) => {
+        setPost(res.data);
+        setStartDate(new Date(res.data.deadline));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
+   
+    if (post.total_volunteer_need <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "No Volunteers Needed",
+        text: "This opportunity has already reached its volunteer limit.",
+      });
+      return;
+    }
+
+     setIsSubmitting(true);
 
     try {
-      const postData = {
-        ...formData,
-        deadline: startDate,
+      const volunteerData = {
+        post_id: id,
+        thumbnail_image: post.thumbnail_image,
+        post_title: post.post_title,
+        description: post.description,
+        category: post.category,
+        location: post.location,
+        deadline: post.deadline,
+        total_volunteer_need: post.total_volunteer_need,
+        organizer_name: post.organizer_name,
+        organizer_email: post.organizer_email,
+        volunteer_name: user?.displayName,
+        volunteer_email: user?.email,
+        suggestion,
+        status: "requested",
       };
-      const response = await axios.post("http://localhost:5000/add-post", postData);
+
+      const response = await axios.post(
+        "http://localhost:5000/be-volunteer",
+        volunteerData
+      );
       if (response.status === 200) {
         Swal.fire({
-          title: "Post Created Successfully!",
+          title: "Request submitted successfully!",
           icon: "success",
           draggable: true,
         });
       }
-
-      // form reset
-      setFormData({
-        thumbnail_image: "",
-        post_title: "",
-        category: "",
-        location: "",
-        description: "",
-        total_volunteer_need: "",
-        organizer_name: user?.displayName,
-        organizer_email: user?.email,
-      });
-      // date reset
-      setStartDate(new Date());
-
+      setSuggestion("");
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -73,9 +82,9 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <h1 className="text-4xl font-bold text-center my-5 p-5">
-        Add Volunteer Need Post
+        Be A Volunteer
       </h1>
       <form
         onSubmit={handleSubmit}
@@ -89,10 +98,10 @@ const AddVolunteer = () => {
           <input
             type="text"
             name="thumbnail_image"
-            value={formData.thumbnail_image}
-            onChange={handleChange}
+            value={post.thumbnail_image}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            readOnly
           />
         </div>
 
@@ -104,10 +113,11 @@ const AddVolunteer = () => {
           <input
             type="text"
             name="post_title"
-            value={formData.post_title}
-            onChange={handleChange}
+            value={post.post_title}
+            // onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            readOnly
           />
         </div>
 
@@ -118,10 +128,11 @@ const AddVolunteer = () => {
           </label>
           <select
             name="category"
-            value={formData.category}
-            onChange={handleChange}
+            value={post.category}
+            // onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            readOnly
           >
             <option value="">Select Category</option>
             <option value="Healthcare">Healthcare</option>
@@ -139,10 +150,11 @@ const AddVolunteer = () => {
           <input
             type="text"
             name="location"
-            value={formData.location}
-            onChange={handleChange}
+            value={post.location}
+            // onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            readOnly
           />
         </div>
 
@@ -153,11 +165,12 @@ const AddVolunteer = () => {
           </label>
           <textarea
             name="description"
-            value={formData.description}
-            onChange={handleChange}
+            value={post.description}
+            // onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows="4"
             required
+            readOnly
           />
         </div>
 
@@ -169,10 +182,11 @@ const AddVolunteer = () => {
           <input
             type="number"
             name="total_volunteer_need"
-            value={formData.total_volunteer_need}
-            onChange={handleChange}
+            value={post.total_volunteer_need}
+            // onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            readOnly
           />
         </div>
 
@@ -189,6 +203,7 @@ const AddVolunteer = () => {
             placeholderText="Select a date"
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
+            readOnly
           />
         </div>
 
@@ -222,17 +237,61 @@ const AddVolunteer = () => {
           />
         </div>
 
+        {/* Volunteer name */}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Volunteer name:
+          </label>
+          <input
+            type="text"
+            name="volunteer_name"
+            value={user?.displayName}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            readOnly
+          />
+        </div>
+
+        {/* Voluneer Email */}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Volunteer name:
+          </label>
+          <input
+            type="email"
+            name="volunteer_email"
+            value={user?.email}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            readOnly
+          />
+        </div>
+
+        {/* Suggestion */}
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">
+            Suggestion:
+          </label>
+          <textarea
+            value={suggestion}
+            onChange={(e) => setSuggestion(e.target.value)}
+            className="w-full px-3 py-2 border rounded-lg"
+            placeholder="Enter any suggestion..."
+            required
+          />
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || post.total_volunteer_need <= 0}
           className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          {isSubmitting ? "Submitting..." : "Add Post"}
+          {isSubmitting ? "Requesting..." : "Request"}
         </button>
       </form>
     </div>
   );
 };
 
-export default AddVolunteer;
+export default BeAVolunteer;

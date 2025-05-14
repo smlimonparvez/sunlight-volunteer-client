@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Home = () => {
   const { setLoading } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -20,6 +21,10 @@ const Home = () => {
       });
   }, []);
 
+  const handleClicksDetails = (id) => {
+    navigate(`/post-details/${id}`);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {posts.map((post) => (
@@ -33,10 +38,16 @@ const Home = () => {
           </figure>
           <div className="card-body items-center">
             <h2 className="card-title font-semibold">{post.post_title}</h2>
-            <p><span className="font-semibold text-base">Deadline:</span>{post.deadline}</p>
-            <p><span className="font-semibold text-base">Category:</span>{post.category}</p>
+            <p>
+              <span className="font-semibold text-base">Deadline:</span>
+              {post.deadline}
+            </p>
+            <p>
+              <span className="font-semibold text-base">Category:</span>
+              {post.category}
+            </p>
             <div className="card-actions">
-              <Link className="btn btn-primary">View Details</Link>
+              <button onClick={() => handleClicksDetails(post._id)} className="btn btn-primary">View Details</button>
             </div>
           </div>
         </div>

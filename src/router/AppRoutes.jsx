@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router";
 import Layout from "../layout/Layout";
 import ErrorPage from "../pages/ErrorPage";
@@ -9,6 +8,8 @@ import PrivateRoute from "./PrivateRoute";
 import AllPost from "../pages/AllPost";
 import Home from "../pages/Home";
 import PostDetails from "../pages/PostDetails";
+import BeAVolunteer from "../pages/BeAVolunteer";
+import ManageMyPost from "../pages/ManageMyPost";
 
 const AppRoutes = () => {
   return (
@@ -31,6 +32,22 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <PostDetails />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="be-volunteer/:id"
+          element={
+            <PrivateRoute>
+              <BeAVolunteer />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="manage-my-post"
+          element={
+            <PrivateRoute>
+              <ManageMyPost />
             </PrivateRoute>
           }
         />

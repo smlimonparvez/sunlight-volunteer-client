@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 
 const PostDetails = () => {
-  const { user, setLoading } = useContext(AuthContext);
+  const { setLoading } = useContext(AuthContext);
   const { id } = useParams();
   const [postDetails, setPostDetails] = useState({});
+  const navigete = useNavigate();
   const {
+    _id,
     post_title,
     deadline,
     category,
@@ -31,6 +33,10 @@ const PostDetails = () => {
       });
   }, []);
 
+  const handleClickVolunteer = (id) => {
+    navigete(`/be-volunteer/${id}`)
+  }
+ 
   return (
     <div>
       <div className="card bg-base-100 shadow-sm">
@@ -73,10 +79,10 @@ const PostDetails = () => {
           </p>
           <div className="card-actions">
             <button
-              onClick={() => handleCLicksDetails(post._id)}
+              onClick={() => handleClickVolunteer(_id)}
               className="btn btn-primary"
             >
-              View Details
+            Be A Volunteer
             </button>
           </div>
         </div>

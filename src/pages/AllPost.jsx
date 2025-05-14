@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const AllPost = () => {
   const [posts, setPosts] = useState([]);
@@ -18,7 +18,7 @@ const AllPost = () => {
       });
   }, []);
 
-  const handleCLicksDetails = (id) => {
+  const handleClicksDetails = (id) => {
     navigate(`/post-details/${id}`)
   }
 
@@ -38,7 +38,7 @@ const AllPost = () => {
             <p><span className="font-semibold text-base">Deadline:</span>{post.deadline}</p>
             <p><span className="font-semibold text-base">Category:</span>{post.category}</p>
             <div className="card-actions">
-              <button onClick={() => handleCLicksDetails(post._id)} className="btn btn-primary">View Details</button>
+              <button onClick={() => handleClicksDetails(post._id)} className="btn btn-primary">View Details</button>
             </div>
           </div>
         </div>

@@ -82,8 +82,8 @@ const BeAVolunteer = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-center my-5 p-5">
+    <div className="my-16">
+      <h1 className="text-4xl font-bold text-center mb-5">
         Be A Volunteer
       </h1>
       <form

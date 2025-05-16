@@ -23,7 +23,11 @@ const AllPost = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-11/12 mx-auto">
+    <div className="my-10">
+        <h1 className="text-center text-4xl font-bold mb-10">
+        All Volunteer Need Post
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-11/12 mx-auto">
       {posts.map((post) => (
         <div key={post._id} className="card bg-base-100 shadow-sm">
           <figure className="px-10 pt-10">
@@ -33,16 +37,17 @@ const AllPost = () => {
               className="rounded-xl"
             />
           </figure>
-          <div className="card-body items-center text-center">
-            <h2 className="card-title font-semibold">{post.post_title}</h2>
-            <p><span className="font-semibold text-base">Deadline:</span>{post.deadline}</p>
-            <p><span className="font-semibold text-base">Category:</span>{post.category}</p>
+          <div className="card-body">
+            <h2 className="card-title font-semibold text-xl">{post.post_title}</h2>
+            <p className="text-base"><span className="font-semibold text-base">Deadline: </span>{post.deadline}</p>
+            <p className="text-base"><span className="font-semibold text-base">Category: </span>{post.category}</p>
             <div className="card-actions">
-              <button onClick={() => handleClicksDetails(post._id)} className="btn btn-primary">View Details</button>
+              <button onClick={() => handleClicksDetails(post._id)} className="btn btn-primary text-base">View Details</button>
             </div>
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };

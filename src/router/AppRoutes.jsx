@@ -11,6 +11,7 @@ import PostDetails from "../pages/PostDetails";
 import BeAVolunteer from "../pages/BeAVolunteer";
 import ManageMyPost from "../pages/ManageMyPost";
 import UpdateMyPage from "../pages/UpdateMyPage";
+import MyProfile from "../pages/MyProfile";
 
 const AppRoutes = () => {
   return (
@@ -41,6 +42,14 @@ const AppRoutes = () => {
           element={
             <PrivateRoute>
               <BeAVolunteer />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="my-profile"
+          element={
+            <PrivateRoute>
+              <MyProfile />
             </PrivateRoute>
           }
         />

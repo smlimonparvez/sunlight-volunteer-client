@@ -272,7 +272,7 @@ const Home = () => {
       </div>
 
       {/* About us */}
-      <div className="flex flex-col md:flex-row items-center justify-between p-5 mt-10">
+      <div className="flex flex-col md:flex-row items-center justify-between p-5 my-10">
         <div className="w-1/2 p-10 space-y-3">
           <h1 className="text-4xl font-bold my-5">About Us</h1>
           <p className="text-lg font-semibold">

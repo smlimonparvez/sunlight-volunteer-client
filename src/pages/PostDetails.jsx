@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 
@@ -38,49 +38,52 @@ const PostDetails = () => {
   }
  
   return (
-    <div>
-      <div className="card bg-base-100 shadow-sm">
+    <div className="my-10">
+       <h1 className="text-center text-4xl font-bold mb-10">
+        Volunteer Need Post Details
+      </h1>
+      <div className="card bg-base-200 shadow-sm w-4/6 mx-auto">
         <figure className="px-10 pt-10">
           <img
             src={thumbnail_image}
             alt={post_title}
-            className="rounded-xl"
+            className="rounded-xl w-full"
           />
         </figure>
-        <div className="card-body items-center text-center">
-          <h2 className="card-title font-semibold">{post_title}</h2>
-          <p>
-            <span className="font-semibold text-base">Deadline:</span>
+        <div className="card-body p-10">
+          <h2 className="card-title font-semibold text-2xl">{post_title}</h2>
+          <p className="text-base">
+            <span className="font-semibold text-base">Deadline: </span>
             {deadline}
           </p>
-          <p>
-            <span className="font-semibold text-base">Category:</span>
+          <p className="text-base">
+            <span className="font-semibold text-base">Category: </span>
             {category}
           </p>
-          <p>
-            <span className="font-semibold text-base">Location:</span>
+          <p className="text-base">
+            <span className="font-semibold text-base">Location: </span>
             {location}
           </p>
-          <p>
-            <span className="font-semibold text-base">No. of Volunteer Need:</span>
+          <p className="text-base">
+            <span className="font-semibold text-base">No. of Volunteer Need: </span>
             {total_volunteer_need}
           </p>
-          <p>
-            <span className="font-semibold text-base">Description:</span>
+          <p className="text-base">
+            <span className="font-semibold text-base">Description: </span>
             {description}
           </p>
-           <p>
-            <span className="font-semibold text-base">Organizer Name:</span>
+           <p className="text-base">
+            <span className="font-semibold text-base">Organizer Name: </span>
             {organizer_name}
           </p>
-          <p>
-            <span className="font-semibold text-base">Organizer Email:</span>
+          <p className="text-base">
+            <span className="font-semibold text-base">Organizer Email: </span>
             {organizer_email}
           </p>
           <div className="card-actions">
             <button
               onClick={() => handleClickVolunteer(_id)}
-              className="btn btn-primary"
+              className="btn btn-primary text-base mt-5"
             >
             Be A Volunteer
             </button>

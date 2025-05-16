@@ -73,7 +73,7 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="">
+    <div className="my-10">
       <h1 className="text-4xl font-bold text-center my-5 p-5">
         Add Volunteer Need Post
       </h1>

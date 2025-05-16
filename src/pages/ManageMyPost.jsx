@@ -97,80 +97,91 @@ const ManageMyPost = () => {
   };
 
   return (
-    <div className="w-5/6 mx-auto">
-      <h1 className="text-4xl font-bold text-center my-5 p-5">
-        My Volunteer Need Post
-      </h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Post Title</th>
-            <th>Category</th>
-            <th>Location</th>
-            <th>Dateline</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {myPosts.map((mypost, index) => (
-            <tr key={index} className="">
-              <td>{mypost.post_title}</td>
-              <td>{mypost.category}</td>
-              <td>{mypost.location}</td>
-              <td>{new Date(mypost.deadline).toLocaleDateString()}</td>
-              <td>
-                <button
-                  onClick={() => handleUpdatePost(mypost._id)}
-                  className="btn btn-ghost"
-                >
-                  update
-                </button>
-                <button
-                  onClick={() => handleDeletePost(mypost._id)}
-                  className="btn btn-ghost"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="w-5/6 mx-auto my-10">
+      <div>
+        <h1 className="text-4xl font-bold text-center mb-5">
+          My Volunteer Need Post
+        </h1>
+        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+          <table className="table w-full">
+            <thead>
+              <tr>
+                <th>Post Title</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Dateline</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {myPosts.map((mypost, index) => (
+                <tr key={index} className="">
+                  <td>{mypost.post_title}</td>
+                  <td>{mypost.category}</td>
+                  <td>{mypost.location}</td>
+                  <td>{new Date(mypost.deadline).toLocaleDateString()}</td>
+                  <td>
+                    <button
+                      onClick={() => handleUpdatePost(mypost._id)}
+                      className="btn btn-primary mr-2"
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() => handleDeletePost(mypost._id)}
+                      className="btn btn-primary"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       {/* second section */}
-      <h1 className="text-4xl font-bold text-center my-5 p-5">
-        My Volunteer Need Post
-      </h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Post Title</th>
-            <th>Category</th>
-            <th>Location</th>
-            <th>Dateline</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {beVolunteerPosts.map((beVolunteerpost, index) => (
-            <tr key={index} className="">
-              <td>{beVolunteerpost.post_title}</td>
-              <td>{beVolunteerpost.category}</td>
-              <td>{beVolunteerpost.location}</td>
-              <td>{new Date(beVolunteerpost.deadline).toLocaleDateString()}</td>
-              <td>
-                <button
-                  onClick={() =>
-                    handleDeleteBeVolunteerPost(beVolunteerpost._id)
-                  }
-                  className="btn btn-ghost"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="mt-10">
+        <h1 className="text-4xl font-bold text-center mb-5">
+          My Updated Volunteer Need Post
+        </h1>
+        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+          <table className="table w-full">
+            <thead>
+              <tr>
+                <th>Post Title</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Dateline</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {beVolunteerPosts.map((beVolunteerpost, index) => (
+                <tr key={index} className="">
+                  <td>{beVolunteerpost.post_title}</td>
+                  <td>{beVolunteerpost.category}</td>
+                  <td>{beVolunteerpost.location}</td>
+                  <td>
+                    {new Date(beVolunteerpost.deadline).toLocaleDateString()}
+                  </td>
+                  <td>
+                    <button
+                      onClick={() =>
+                        handleDeleteBeVolunteerPost(beVolunteerpost._id)
+                      }
+                      className="btn btn-primary"
+                    >
+                      Cancel
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

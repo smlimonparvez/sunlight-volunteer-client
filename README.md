@@ -1,12 +1,25 @@
-# React + Vite
+# Sunlight Volunteer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Purpose
 
-Currently, two official plugins are available:
+Sunlight Volunteer is a web application designed to connect volunteers with community service opportunities. The platform streamlines the process of finding, applying for, and managing volunteer activities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## NPM Packages Used
 
-## Expanding the ESLint configuration
+- **react**: Frontend UI library
+- **axios**: HTTP client for API requests
+- **react-router-dom**: Routing and navigation
+- **formik**: Form management
+- **yup**: Form validation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+1. User registration and authentication
+2. Browse and search for volunteer opportunities
+3. Apply for and track volunteer activities
+4. Admin dashboard for managing events and users
+5. Responsive design for mobile and desktop
+
+## Live URL
+
+[https://sunlight-volunteer.example.com](https://sunlight-volunteer.example.com)

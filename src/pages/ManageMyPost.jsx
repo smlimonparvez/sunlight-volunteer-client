@@ -98,89 +98,108 @@ const ManageMyPost = () => {
 
   return (
     <div className="w-5/6 mx-auto my-10">
+      {/* My volunteer need post */}
       <div>
         <h1 className="text-4xl font-bold text-center mb-5">
           My Volunteer Need Post
         </h1>
-        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th>Post Title</th>
-                <th>Category</th>
-                <th>Location</th>
-                <th>Dateline</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myPosts.map((mypost, index) => (
-                <tr key={index} className="">
-                  <td>{mypost.post_title}</td>
-                  <td>{mypost.category}</td>
-                  <td>{mypost.location}</td>
-                  <td>{new Date(mypost.deadline).toLocaleDateString()}</td>
-                  <td>
-                    <button
-                      onClick={() => handleUpdatePost(mypost._id)}
-                      className="btn btn-primary mr-2"
-                    >
-                      Update
-                    </button>
-                    <button
-                      onClick={() => handleDeletePost(mypost._id)}
-                      className="btn btn-primary"
-                    >
-                      Delete
-                    </button>
-                  </td>
+        {myPosts.length === 0 ? (
+          <div className="text-center p-10 bg-base-100 rounded-box border border-base-content/5">
+            <h1 className="text-2xl mb-4">You havn't add any post yet</h1>
+            <Link to="/add-volunteer" className="btn">
+              Add Volunteer Need Post
+            </Link>
+          </div>
+        ) : (
+          <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>Post Title</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Dateline</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {myPosts.map((mypost, index) => (
+                  <tr key={index} className="">
+                    <td>{mypost.post_title}</td>
+                    <td>{mypost.category}</td>
+                    <td>{mypost.location}</td>
+                    <td>{new Date(mypost.deadline).toLocaleDateString()}</td>
+                    <td>
+                      <button
+                        onClick={() => handleUpdatePost(mypost._id)}
+                        className="btn mr-5"
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => handleDeletePost(mypost._id)}
+                        className="btn"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
-      {/* second section */}
+      {/* My volunteer request post */}
       <div className="mt-10">
         <h1 className="text-4xl font-bold text-center mb-5">
-          My Updated Volunteer Need Post
+          My Volunteer Requested Post
         </h1>
-        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th>Post Title</th>
-                <th>Category</th>
-                <th>Location</th>
-                <th>Dateline</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {beVolunteerPosts.map((beVolunteerpost, index) => (
-                <tr key={index} className="">
-                  <td>{beVolunteerpost.post_title}</td>
-                  <td>{beVolunteerpost.category}</td>
-                  <td>{beVolunteerpost.location}</td>
-                  <td>
-                    {new Date(beVolunteerpost.deadline).toLocaleDateString()}
-                  </td>
-                  <td>
-                    <button
-                      onClick={() =>
-                        handleDeleteBeVolunteerPost(beVolunteerpost._id)
-                      }
-                      className="btn btn-primary"
-                    >
-                      Cancel
-                    </button>
-                  </td>
+        {beVolunteerPosts.lenght === 0 ? (
+          <div className="text-center p-10 bg-base-100 rounded-box border border-base-content/5">
+            <h1 className="text-2xl mb-4">You havn't add any request post yet</h1>
+            <Link to="/add-volunteer" className="btn">
+              Add Volunteer Request Post
+            </Link>
+          </div>
+        ) : (
+          <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>Post Title</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Dateline</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {beVolunteerPosts.map((beVolunteerpost, index) => (
+                  <tr key={index} className="">
+                    <td>{beVolunteerpost.post_title}</td>
+                    <td>{beVolunteerpost.category}</td>
+                    <td>{beVolunteerpost.location}</td>
+                    <td>
+                      {new Date(beVolunteerpost.deadline).toLocaleDateString()}
+                    </td>
+                    <td>
+                      <button
+                        onClick={() =>
+                          handleDeleteBeVolunteerPost(beVolunteerpost._id)
+                        }
+                        className="btn"
+                      >
+                        Cancel
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

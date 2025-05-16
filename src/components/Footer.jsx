@@ -36,7 +36,7 @@ const Footer = () => {
             <span className="font-bold text-xl">SUNLIGHT Volunteer</span>
             <br />
             <span className="text-base">
-              We are a non-profit organization dedicated to making a positive
+              We are a non-profit organization dedicated to making a positive <br />
               impact in the community through our volunteer programs.
             </span>
           </p>

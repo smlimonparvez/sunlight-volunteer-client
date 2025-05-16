@@ -63,8 +63,8 @@ const UpdateMyPage = () => {
   };
 
   return (
-    <div className="">
-      <h1 className="text-4xl font-bold text-center my-5 p-5">
+    <div className="my-10">
+      <h1 className="text-4xl font-bold text-center mb-5">
         Update My Volunteer Need Post
       </h1>
       <form

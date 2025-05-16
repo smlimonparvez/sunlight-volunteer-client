@@ -12,6 +12,7 @@ const BeAVolunteer = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [suggestion, setSuggestion] = useState("");
+  const [status, setStatus] = useState("Requested");
 
   useEffect(() => {
     axios
@@ -55,7 +56,7 @@ const BeAVolunteer = () => {
         volunteer_name: user?.displayName,
         volunteer_email: user?.email,
         suggestion,
-        status: "requested",
+        status,
       };
 
       const response = await axios.post(
@@ -73,8 +74,8 @@ const BeAVolunteer = () => {
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "You are Already Applied" +" "+ err.message,
+        title: "You are Already Applied",
+        text: err.message
       });
     } finally {
       setIsSubmitting(false);
@@ -281,7 +282,18 @@ const BeAVolunteer = () => {
           />
         </div>
 
-        {/* Submit Button */}
+        {/* Status */}
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">
+            Status:
+          </label>
+          <input
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="w-full px-3 py-2 border rounded-lg"
+            required
+          />
+        </div>
         <button
           type="submit"
           disabled={isSubmitting || post.total_volunteer_need <= 0}

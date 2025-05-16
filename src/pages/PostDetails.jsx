@@ -34,12 +34,20 @@ const PostDetails = () => {
   }, []);
 
   const handleClickVolunteer = (id) => {
-    navigete(`/be-volunteer/${id}`)
-  }
- 
+    if (postDetails.total_volunteer_need <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "No Volunteers Needed",
+        text: "This opportunity has already reached its volunteer limit.",
+      });
+      return;
+    }
+    navigete(`/be-volunteer/${id}`);
+  };
+
   return (
     <div className="my-10">
-       <h1 className="text-center text-4xl font-bold mb-10">
+      <h1 className="text-center text-4xl font-bold mb-10">
         Volunteer Need Post Details
       </h1>
       <div className="card bg-base-200 shadow-sm w-4/6 mx-auto">
@@ -65,14 +73,16 @@ const PostDetails = () => {
             {location}
           </p>
           <p className="text-base">
-            <span className="font-semibold text-base">No. of Volunteer Need: </span>
+            <span className="font-semibold text-base">
+              No. of Volunteer Need:{" "}
+            </span>
             {total_volunteer_need}
           </p>
           <p className="text-base">
             <span className="font-semibold text-base">Description: </span>
             {description}
           </p>
-           <p className="text-base">
+          <p className="text-base">
             <span className="font-semibold text-base">Organizer Name: </span>
             {organizer_name}
           </p>
@@ -85,7 +95,7 @@ const PostDetails = () => {
               onClick={() => handleClickVolunteer(_id)}
               className="btn btn-primary text-base mt-5"
             >
-            Be A Volunteer
+              Be A Volunteer
             </button>
           </div>
         </div>

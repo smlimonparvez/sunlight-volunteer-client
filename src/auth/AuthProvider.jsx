@@ -64,14 +64,14 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         const user = { email: currentUser.email };
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .post("https://rs9-a11-server.vercel.app/jwt", user, { withCredentials: true })
           .then((res) => {
             console.log(res.data);
             setLoading(false);
           });
       } else {
         axios
-          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .post("https://rs9-a11-server.vercel.app/logout", {}, { withCredentials: true })
           .then((res) => {
             console.log("logout", res.data);
             setLoading(false);

@@ -22,4 +22,4 @@ Sunlight Volunteer is a web application designed to connect volunteers with comm
 
 ## Live URL
 
-[https://sunlight-volunteer.example.com](https://sunlight-volunteer.example.com)
+[https://sunlight-volunteer.web.app](https://sunlight-volunteer.example.com)

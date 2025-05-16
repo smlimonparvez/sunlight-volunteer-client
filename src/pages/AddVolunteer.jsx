@@ -39,7 +39,7 @@ const AddVolunteer = () => {
         ...formData,
         deadline: startDate,
       };
-      const response = await axios.post("http://localhost:5000/add-post", postData);
+      const response = await axios.post("https://rs9-a11-server.vercel.app/add-post", postData);
       if (response.status === 200) {
         Swal.fire({
           title: "Post Created Successfully!",

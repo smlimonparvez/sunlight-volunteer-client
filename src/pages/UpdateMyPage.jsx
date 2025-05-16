@@ -15,7 +15,7 @@ const UpdateMyPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/post-details/${id}`)
+      .get(`https://rs9-a11-server.vercel.app/post-details/${id}`)
       .then((res) => {
         setPost(res.data);
         setStartDate(new Date(res.data.deadline));
@@ -44,7 +44,7 @@ const UpdateMyPage = () => {
         deadline: startDate,
       };
       const response = await axios.put(
-        `http://localhost:5000/update-my-post/${id}`,
+        `https://rs9-a11-server.vercel.app/update-my-post/${id}`,
         postData
       );
       if (response.status === 200) {

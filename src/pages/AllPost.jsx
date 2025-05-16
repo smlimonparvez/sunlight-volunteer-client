@@ -14,7 +14,7 @@ const AllPost = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/posts")
+      .get("https://rs9-a11-server.vercel.app/posts")
       .then((res) => {
         setPosts(res.data);
         setFilteredPosts(res.data);

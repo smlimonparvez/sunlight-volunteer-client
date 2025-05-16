@@ -16,7 +16,7 @@ const ManageMyPost = () => {
   useEffect(() => {
     if (user?.email) {
       // axios
-      //   .get(`http://localhost:5000/my-posts?userEmail=${user.email}`)
+      //   .get(`https://rs9-a11-server.vercel.app/my-posts?userEmail=${user.email}`)
       axiosSecure
         .get(`/my-posts?userEmail=${user.email}`)
         .then((res) => {
@@ -33,7 +33,7 @@ const ManageMyPost = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/be-volunteer-posts?userEmail=${user.email}`)
+        .get(`https://rs9-a11-server.vercel.app/be-volunteer-posts?userEmail=${user.email}`)
         .then((res) => {
           console.log(res.data);
           setBeVolunteerPosts(res.data);
@@ -56,7 +56,7 @@ const ManageMyPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/delete-be-volunteer-post/${id}`);
+        axios.delete(`https://rs9-a11-server.vercel.app/delete-be-volunteer-post/${id}`);
         Swal.fire({
           title: "Deleted!",
           text: "Your Post has been deleted.",
@@ -81,7 +81,7 @@ const ManageMyPost = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/delete-my-post/${id}`);
+        axios.delete(`https://rs9-a11-server.vercel.app/delete-my-post/${id}`);
         Swal.fire({
           title: "Deleted!",
           text: "Your Post has been deleted.",

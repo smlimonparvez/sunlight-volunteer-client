@@ -24,7 +24,7 @@ const PostDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/post-details/${id}`)
+      .get(`https://rs9-a11-server.vercel.app/post-details/${id}`)
       .then((res) => {
         setPostDetails(res.data);
         setLoading(false);

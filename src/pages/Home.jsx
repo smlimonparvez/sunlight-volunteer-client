@@ -25,7 +25,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/limited-posts")
+      .get("https://rs9-a11-server.vercel.app/limited-posts")
       .then((res) => {
         console.log(res.data);
         setPosts(res.data);

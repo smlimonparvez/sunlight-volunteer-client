@@ -17,7 +17,7 @@ const BeAVolunteer = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/post-details/${id}`)
+      .get(`https://rs9-a11-server.vercel.app/post-details/${id}`)
       .then((res) => {
         setPost(res.data);
         setStartDate(new Date(res.data.deadline));
@@ -61,7 +61,7 @@ const BeAVolunteer = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/be-volunteer",
+        "https://rs9-a11-server.vercel.app/be-volunteer",
         volunteerData
       );
       if (response.status === 200) {

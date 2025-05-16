@@ -139,7 +139,7 @@ const ManageMyPost = () => {
                     <td>
                       <button
                         onClick={() => handleUpdatePost(mypost._id)}
-                        className="btn mr-5"
+                        className="btn mr-5 mb-2 sm:mb-0"
                       >
                         Update
                       </button>

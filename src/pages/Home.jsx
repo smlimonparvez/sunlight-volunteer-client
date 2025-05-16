@@ -63,8 +63,8 @@ const Home = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="flex flex-col lg:flex-row items-center justify-between p-5">
-            <div className="w-1/2 p-10 space-y-3">
+          <div className="flex flex-col md:flex-row items-center justify-between p-5">
+            <div className="md:w-1/2 p-5 md:p-10 space-y-3">
               <h1 className="text-5xl font-bold">
                 Make a Difference Volunteer with Us!
               </h1>
@@ -75,7 +75,7 @@ const Home = () => {
               </p>
               <button className="btn btn-primary text-base">Learn More</button>
             </div>
-            <div className="w-1/2 p-5">
+            <div className="md:w-1/2 p-5">
               <img
                 className="w-full h-96 object-cover rounded-lg"
                 src="https://i.postimg.cc/1XJrsJ0Y/charity-1.jpg"
@@ -85,8 +85,8 @@ const Home = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col lg:flex-row items-center justify-between p-5">
-            <div className="w-1/2 p-10 space-y-3">
+          <div className="flex flex-col md:flex-row items-center justify-between p-5">
+            <div className="md:w-1/2 p-5 md:p-10 space-y-3">
               <h1 className="text-5xl font-bold">
                 Giving Today For Better A Tomorrow
               </h1>
@@ -97,7 +97,7 @@ const Home = () => {
               </p>
               <button className="btn btn-primary text-base">Learn More</button>
             </div>
-            <div className="w-1/2 p-5">
+            <div className="md:w-1/2 p-5">
               <img
                 className="w-full h-96 object-cover rounded-lg"
                 src="https://i.postimg.cc/XN88fYMc/charity-3.jpg"
@@ -107,8 +107,8 @@ const Home = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col lg:flex-row items-center justify-between p-5">
-            <div className="w-1/2 p-10 space-y-3">
+          <div className="flex flex-col md:flex-row items-center justify-between p-5">
+            <div className="md:w-1/2 p-5 md:p-10 space-y-3">
               <h1 className="text-5xl font-bold">
                 Join Our Compassionate Volunteer Community
               </h1>
@@ -119,7 +119,7 @@ const Home = () => {
               </p>
               <button className="btn btn-primary text-base">Learn More</button>
             </div>
-            <div className="w-1/2 p-5">
+            <div className="md:w-1/2 p-5">
               <img
                 className="w-full h-96 object-cover rounded-lg"
                 src="https://i.postimg.cc/wM6QCSNm/charity-2.jpg"
@@ -207,15 +207,15 @@ const Home = () => {
       </div>
 
       {/* our commitment */}
-      <div className="flex flex-col md:flex-row items-center justify-between p-5">
-        <div className="w-1/2">
+      <div className="flex flex-col lg:flex-row items-center justify-between p-5">
+        <div className="lg:w-1/2">
           <img
             className="w-full h-96 object-cover rounded-lg"
             src="https://i.postimg.cc/wM6QCSNm/charity-2.jpg"
             alt=""
           />
         </div>
-        <div className="w-1/2 p-10 space-y-3">
+        <div className="lg:w-1/2 p-5 md:p-10 space-y-3">
           <h1 className="text-4xl font-bold my-5">Our Commitment</h1>
           <p className="text-lg font-semibold">
             We are dedicated to making a positive impact in the community
@@ -279,7 +279,7 @@ const Home = () => {
 
       {/* About us */}
       <div className="flex flex-col md:flex-row items-center justify-between p-5 my-10">
-        <div className="w-1/2 p-10 space-y-3">
+        <div className="md:w-1/2 p-10 space-y-3">
           <h1 className="text-4xl font-bold my-5">About Us</h1>
           <p className="text-lg font-semibold">
             We are a non-profit organization dedicated to making a positive
@@ -288,7 +288,7 @@ const Home = () => {
           </p>
           <button className="btn btn-primary text-base">Learn More</button>
         </div>
-        <div className="w-1/2">
+        <div className="md:w-1/2">
           <img
             className="w-full h-96 object-cover rounded-lg"
             src="https://i.postimg.cc/XN88fYMc/charity-3.jpg"

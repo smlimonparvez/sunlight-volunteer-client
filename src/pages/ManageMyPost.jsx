@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const ManageMyPost = () => {
   const { user, setLoading } = useContext(AuthContext);
@@ -98,6 +99,12 @@ const ManageMyPost = () => {
 
   return (
     <div className="w-5/6 mx-auto my-10">
+      {/* helmet */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>My Posts | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       {/* My volunteer need post */}
       <div>
         <h1 className="text-4xl font-bold text-center mb-5">

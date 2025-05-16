@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const UpdateMyPage = () => {
   const { user, setLoading } = useContext(AuthContext);
@@ -33,7 +34,7 @@ const UpdateMyPage = () => {
     });
   };
 
-   const handleSubmitUpdate = async (e) => {
+  const handleSubmitUpdate = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -42,7 +43,10 @@ const UpdateMyPage = () => {
         ...post,
         deadline: startDate,
       };
-      const response = await axios.put(`http://localhost:5000/update-my-post/${id}`, postData);
+      const response = await axios.put(
+        `http://localhost:5000/update-my-post/${id}`,
+        postData
+      );
       if (response.status === 200) {
         Swal.fire({
           title: "Post Updated Successfully!",
@@ -50,7 +54,6 @@ const UpdateMyPage = () => {
           draggable: true,
         });
       }
-
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -64,6 +67,12 @@ const UpdateMyPage = () => {
 
   return (
     <div className="my-10">
+      {/* helmet */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Update Post | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <h1 className="text-4xl font-bold text-center mb-5">
         Update My Volunteer Need Post
       </h1>

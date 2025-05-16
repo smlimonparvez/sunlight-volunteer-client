@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { signIn, resetPassword, setUser, googleSignIn } =
@@ -88,6 +89,13 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center py-18">
+      {/* helmet */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Log In | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h1 className="text-center text-3xl font-bold">Sign In</h1>

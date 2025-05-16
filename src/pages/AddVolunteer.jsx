@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const AddVolunteer = () => {
   const { user } = useContext(AuthContext);
@@ -74,6 +75,12 @@ const AddVolunteer = () => {
 
   return (
     <div className="my-10">
+      {/* helmet */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Add Post | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <h1 className="text-4xl font-bold text-center my-5 p-5">
         Add Volunteer Need Post
       </h1>

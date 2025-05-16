@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { IoIosSearch } from "react-icons/io";
 import { LuLayoutGrid } from "react-icons/lu";
 import { useNavigate } from "react-router";
@@ -43,6 +44,13 @@ const AllPost = () => {
 
   return (
     <div className="my-10 w-11/12 mx-auto">
+      {/* helmet */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>All Post | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <h1 className="text-center text-4xl font-bold mb-10">
         All Volunteer Need Posts
       </h1>
@@ -57,7 +65,7 @@ const AllPost = () => {
             className="input input-bordered w-full md:w-1/2"
           />
           <button className="btn border border-blue-400" onClick={handleSearch}>
-            <IoIosSearch className="text-lg"/> search
+            <IoIosSearch className="text-lg" /> search
           </button>
         </div>
       </div>
@@ -67,7 +75,8 @@ const AllPost = () => {
         className="btn border border-blue-400 mb-10"
         onClick={toggleLayout}
       >
-        <LuLayoutGrid className="text-xl" /> {isTableView ? "Show Card View" : "Show Table View"}
+        <LuLayoutGrid className="text-xl" />{" "}
+        {isTableView ? "Show Card View" : "Show Table View"}
       </button>
 
       {/* conditional rendaring layuot */}
@@ -87,18 +96,24 @@ const AllPost = () => {
             <tbody>
               {filteredPosts.map((post, index) => (
                 <tr key={index} className="">
-                  <td><img className="rounded w-14 h-14" src={post.thumbnail_image} alt={post.post_title} /></td>
+                  <td>
+                    <img
+                      className="rounded w-14 h-14"
+                      src={post.thumbnail_image}
+                      alt={post.post_title}
+                    />
+                  </td>
                   <td>{post.post_title}</td>
                   <td>{post.category}</td>
                   <td>{post.location}</td>
                   <td>{new Date(post.deadline).toLocaleDateString()}</td>
                   <td>
-                     <button
-                    onClick={() => handleClicksDetails(post._id)}
-                    className="btn btn-primary text-base"
-                  >
-                    View Details
-                  </button>
+                    <button
+                      onClick={() => handleClicksDetails(post._id)}
+                      className="btn btn-primary text-base"
+                    >
+                      View Details
+                    </button>
                   </td>
                 </tr>
               ))}

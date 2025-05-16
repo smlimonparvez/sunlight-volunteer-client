@@ -16,6 +16,7 @@ import {
 import CountUp from "react-countup";
 import { MdHomeWork, MdVolunteerActivism } from "react-icons/md";
 import { FaPeopleRobbery } from "react-icons/fa6";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const { setLoading } = useContext(AuthContext);
@@ -41,6 +42,11 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       {/* Home slider */}
       <Swiper
         spaceBetween={30}

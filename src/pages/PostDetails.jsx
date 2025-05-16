@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const PostDetails = () => {
   const { setLoading } = useContext(AuthContext);
@@ -47,6 +48,13 @@ const PostDetails = () => {
 
   return (
     <div className="my-10">
+      {/* helmet */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Post Details | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <h1 className="text-center text-4xl font-bold mb-10">
         Volunteer Need Post Details
       </h1>

@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const BeAVolunteer = () => {
   const { user, setLoading } = useContext(AuthContext);
@@ -84,6 +85,12 @@ const BeAVolunteer = () => {
 
   return (
     <div className="my-16">
+      {/* helmet */}
+            <Helmet>
+              <meta charSet="utf-8" />
+              <title>Be A Volunteer | Sunlight Volunteer</title>
+              <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
       <h1 className="text-4xl font-bold text-center mb-5">
         Be A Volunteer
       </h1>

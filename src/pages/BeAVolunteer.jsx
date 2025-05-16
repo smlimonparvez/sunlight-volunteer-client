@@ -28,7 +28,7 @@ const BeAVolunteer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+
     if (post.total_volunteer_need <= 0) {
       Swal.fire({
         icon: "error",
@@ -38,11 +38,11 @@ const BeAVolunteer = () => {
       return;
     }
 
-     setIsSubmitting(true);
+    setIsSubmitting(true);
 
     try {
       const volunteerData = {
-        post_id: id,
+        _id: post._id,
         thumbnail_image: post.thumbnail_image,
         post_title: post.post_title,
         description: post.description,
@@ -74,7 +74,7 @@ const BeAVolunteer = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: err.message,
+        text: "You are Already Applied" +" "+ err.message,
       });
     } finally {
       setIsSubmitting(false);

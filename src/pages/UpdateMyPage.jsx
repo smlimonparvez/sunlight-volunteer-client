@@ -27,8 +27,8 @@ const UpdateMyPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setPost({
+      ...post,
       [name]: value,
     });
   };

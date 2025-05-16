@@ -3,17 +3,21 @@ import { AuthContext } from "../auth/AuthProvider";
 import axios from "axios";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ManageMyPost = () => {
   const { user, setLoading } = useContext(AuthContext);
   const [myPosts, setMyPosts] = useState([]);
   const [beVolunteerPosts, setBeVolunteerPosts] = useState([]);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user?.email) {
-      axios
-        .get(`http://localhost:5000/my-posts?userEmail=${user.email}`)
+      // axios
+      //   .get(`http://localhost:5000/my-posts?userEmail=${user.email}`)
+      axiosSecure
+        .get(`/my-posts?userEmail=${user.email}`)
         .then((res) => {
           console.log(res.data);
           setMyPosts(res.data);
@@ -58,11 +62,13 @@ const ManageMyPost = () => {
           icon: "success",
         });
         // update ui
-        setBeVolunteerPosts(beVolunteerPosts.filter((volunteerPost) => volunteerPost._id !== id));
+        setBeVolunteerPosts(
+          beVolunteerPosts.filter((volunteerPost) => volunteerPost._id !== id)
+        );
       }
     });
   };
-  
+
   const handleDeletePost = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -153,7 +159,9 @@ const ManageMyPost = () => {
               <td>{new Date(beVolunteerpost.deadline).toLocaleDateString()}</td>
               <td>
                 <button
-                  onClick={() => handleDeleteBeVolunteerPost(beVolunteerpost._id)}
+                  onClick={() =>
+                    handleDeleteBeVolunteerPost(beVolunteerpost._id)
+                  }
                   className="btn btn-ghost"
                 >
                   Delete

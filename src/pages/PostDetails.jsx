@@ -3,10 +3,13 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../auth/AuthProvider";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const PostDetails = () => {
-  const { setLoading } = useContext(AuthContext);
   const { id } = useParams();
+  const { setLoading } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const [postDetails, setPostDetails] = useState({});
   const navigete = useNavigate();
   const {
@@ -23,8 +26,8 @@ const PostDetails = () => {
   } = postDetails;
 
   useEffect(() => {
-    axios
-      .get(`https://rs9-a11-server.vercel.app/post-details/${id}`)
+    axiosSecure
+      .get(`/post-details/${id}`)
       .then((res) => {
         setPostDetails(res.data);
         setLoading(false);

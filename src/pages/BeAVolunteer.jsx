@@ -5,10 +5,12 @@ import { AuthContext } from "../auth/AuthProvider";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const BeAVolunteer = () => {
-  const { user, setLoading } = useContext(AuthContext);
   const { id } = useParams();
+  const { user, setLoading } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const [post, setPost] = useState({});
   const [startDate, setStartDate] = useState(new Date());
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,8 +18,8 @@ const BeAVolunteer = () => {
   const [status, setStatus] = useState("Requested");
 
   useEffect(() => {
-    axios
-      .get(`https://rs9-a11-server.vercel.app/post-details/${id}`)
+    axiosSecure
+      .get(`/post-details/${id}`)
       .then((res) => {
         setPost(res.data);
         setStartDate(new Date(res.data.deadline));
@@ -60,10 +62,7 @@ const BeAVolunteer = () => {
         status,
       };
 
-      const response = await axios.post(
-        "https://rs9-a11-server.vercel.app/be-volunteer",
-        volunteerData
-      );
+      const response = await axiosSecure.post("/be-volunteer", volunteerData);
       if (response.status === 200) {
         Swal.fire({
           title: "Request submitted successfully!",
@@ -76,7 +75,7 @@ const BeAVolunteer = () => {
       Swal.fire({
         icon: "error",
         title: "You are Already Applied",
-        text: err.message
+        text: err.message,
       });
     } finally {
       setIsSubmitting(false);
@@ -86,14 +85,12 @@ const BeAVolunteer = () => {
   return (
     <div className="my-16">
       {/* helmet */}
-            <Helmet>
-              <meta charSet="utf-8" />
-              <title>Be A Volunteer | Sunlight Volunteer</title>
-              <link rel="canonical" href="http://mysite.com/example" />
-            </Helmet>
-      <h1 className="text-4xl font-bold text-center mb-5">
-        Be A Volunteer
-      </h1>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Be A Volunteer | Sunlight Volunteer</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      <h1 className="text-4xl font-bold text-center mb-5">Be A Volunteer</h1>
       <form
         onSubmit={handleSubmit}
         className="bg-base-200 p-8 rounded-lg shadow-md w-full max-w-2xl mx-auto"
@@ -291,9 +288,7 @@ const BeAVolunteer = () => {
 
         {/* Status */}
         <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">
-            Status:
-          </label>
+          <label className="block text-gray-700 font-bold mb-2">Status:</label>
           <input
             value={status}
             onChange={(e) => setStatus(e.target.value)}

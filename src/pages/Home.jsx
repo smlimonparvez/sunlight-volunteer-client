@@ -27,7 +27,7 @@ const Home = () => {
     axios
       .get("https://rs9-a11-server.vercel.app/limited-posts")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setPosts(res.data);
         setLoading(false);
       })

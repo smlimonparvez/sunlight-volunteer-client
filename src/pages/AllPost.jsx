@@ -18,7 +18,7 @@ const AllPost = () => {
       .then((res) => {
         setPosts(res.data);
         setFilteredPosts(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.error(err.message);
@@ -62,7 +62,7 @@ const AllPost = () => {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search by post title..."
-            className="input input-bordered w-full md:w-1/2"
+            className="input input-bordered border border-blue-400  w-full md:w-1/2"
           />
           <button className="btn border border-blue-400" onClick={handleSearch}>
             <IoIosSearch className="text-lg" /> search

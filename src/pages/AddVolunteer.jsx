@@ -5,11 +5,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddVolunteer = () => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   const [formData, setFormData] = useState({
     thumbnail_image: "",
@@ -39,7 +41,7 @@ const AddVolunteer = () => {
         ...formData,
         deadline: startDate,
       };
-      const response = await axios.post("https://rs9-a11-server.vercel.app/add-post", postData);
+      const response = await axiosSecure.post("/add-post", postData);
       if (response.status === 200) {
         Swal.fire({
           title: "Post Created Successfully!",
@@ -174,7 +176,7 @@ const AddVolunteer = () => {
             No. of Volunteers Needed:
           </label>
           <input
-            type="number"
+            type="text"
             name="total_volunteer_need"
             value={formData.total_volunteer_need}
             onChange={handleChange}

@@ -5,17 +5,19 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const UpdateMyPage = () => {
+  const { id } = useParams();
   const { user, setLoading } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const [startDate, setStartDate] = useState(new Date());
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { id } = useParams();
   const [post, setPost] = useState({});
 
   useEffect(() => {
-    axios
-      .get(`https://rs9-a11-server.vercel.app/post-details/${id}`)
+    axiosSecure
+      .get(`/post-details/${id}`)
       .then((res) => {
         setPost(res.data);
         setStartDate(new Date(res.data.deadline));
@@ -43,10 +45,7 @@ const UpdateMyPage = () => {
         ...post,
         deadline: startDate,
       };
-      const response = await axios.put(
-        `https://rs9-a11-server.vercel.app/update-my-post/${id}`,
-        postData
-      );
+      const response = await axiosSecure.put(`/update-my-post/${id}`, postData);
       if (response.status === 200) {
         Swal.fire({
           title: "Post Updated Successfully!",
@@ -166,7 +165,7 @@ const UpdateMyPage = () => {
             No. of Volunteers Needed:
           </label>
           <input
-            type="number"
+            type="text"
             name="total_volunteer_need"
             value={post.total_volunteer_need}
             onChange={handleChange}

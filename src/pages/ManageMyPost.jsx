@@ -15,12 +15,10 @@ const ManageMyPost = () => {
 
   useEffect(() => {
     if (user?.email) {
-      // axios
-      //   .get(`https://rs9-a11-server.vercel.app/my-posts?userEmail=${user.email}`)
       axiosSecure
         .get(`/my-posts?userEmail=${user.email}`)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setMyPosts(res.data);
           setLoading(false);
         })
@@ -33,9 +31,11 @@ const ManageMyPost = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://rs9-a11-server.vercel.app/be-volunteer-posts?userEmail=${user.email}`)
+        .get(
+          `https://rs9-a11-server.vercel.app/be-volunteer-posts?userEmail=${user.email}`
+        )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setBeVolunteerPosts(res.data);
           setLoading(false);
         })
@@ -45,7 +45,7 @@ const ManageMyPost = () => {
     }
   }, [user]);
 
-  const handleDeleteBeVolunteerPost = (id) => {
+  const handleDeleteBeVolunteerPost = async (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -54,23 +54,41 @@ const ManageMyPost = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://rs9-a11-server.vercel.app/delete-be-volunteer-post/${id}`);
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your Post has been deleted.",
-          icon: "success",
-        });
-        // update ui
-        setBeVolunteerPosts(
-          beVolunteerPosts.filter((volunteerPost) => volunteerPost._id !== id)
-        );
+        try {
+          const res = await axios.delete(
+            `https://rs9-a11-server.vercel.app/delete-be-volunteer-post/${id}`
+          );
+          // console.log("Delete response:", res.data);
+
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Canceled!",
+              text: "Your Post has been canceled.",
+              icon: "success",
+            });
+            // update ui
+            setBeVolunteerPosts(
+              beVolunteerPosts.filter(
+                (volunteerPost) => volunteerPost._id !== id
+              )
+            );
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Post Delation Failed",
+              text: "Something went wrong!",
+            });
+          }
+        } catch (err) {
+          Swal.fire("Error!", "Something went wrong.", "error");
+        }
       }
     });
   };
 
-  const handleDeletePost = (id) => {
+  const handleDeletePost = async (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -79,16 +97,30 @@ const ManageMyPost = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://rs9-a11-server.vercel.app/delete-my-post/${id}`);
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your Post has been deleted.",
-          icon: "success",
-        });
-        // update ui
-        setMyPosts(myPosts.filter((mypost) => mypost._id !== id));
+        try {
+          const res = await axios.delete(
+            `https://rs9-a11-server.vercel.app/delete-my-post/${id}`
+          );
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Post has been deleted.",
+              icon: "success",
+            });
+            // update ui
+            setMyPosts(myPosts.filter((mypost) => mypost._id !== id));
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Post Delation Failed",
+              text: "Something went wrong!",
+            });
+          }
+        } catch (err) {
+          Swal.fire("Error!", "Something went wrong.", "error");
+        }
       }
     });
   };
@@ -98,7 +130,7 @@ const ManageMyPost = () => {
   };
 
   return (
-    <div className="w-5/6 mx-auto my-10">
+    <div className="w-5/6 mx-auto my-16">
       {/* helmet */}
       <Helmet>
         <meta charSet="utf-8" />
@@ -111,11 +143,24 @@ const ManageMyPost = () => {
           My Volunteer Need Post
         </h1>
         {myPosts.length === 0 ? (
-          <div className="text-center p-10 bg-base-100 rounded-box border border-base-content/5">
-            <h1 className="text-2xl mb-4">You havn't add any post yet</h1>
-            <Link to="/add-volunteer" className="btn">
-              Add Volunteer Need Post
-            </Link>
+          <div
+            className="p-10 bg-base-100 rounded-box border border-blue-400 relative"
+            style={{
+              backgroundImage: "url(https://i.postimg.cc/Y0rSTBZv/9264822.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              width: "100%",
+              minHeight: "700px",
+            }}
+          >
+            <div className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <h1 className="text-4xl font-bold mb-4 dark:text-gray-800">
+                You havn't add any request post yet
+              </h1>
+              <Link to="/add-volunteer" className="btn text-base">
+                Add Volunteer Need Post
+              </Link>
+            </div>
           </div>
         ) : (
           <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -160,15 +205,28 @@ const ManageMyPost = () => {
 
       {/* My volunteer request post */}
       <div className="mt-10">
-        <h1 className="text-4xl font-bold text-center mb-5">
+        <h1 className="text-4xl font-bold text-center mb-10">
           My Volunteer Requested Post
         </h1>
-        {beVolunteerPosts.lenght === 0 ? (
-          <div className="text-center p-10 bg-base-100 rounded-box border border-base-content/5">
-            <h1 className="text-2xl mb-4">You havn't add any request post yet</h1>
-            <Link to="/add-volunteer" className="btn">
-              Add Volunteer Request Post
-            </Link>
+        {beVolunteerPosts.length === 0 ? (
+          <div
+            className="p-10 bg-base-100 rounded-box border border-blue-400 relative"
+            style={{
+              backgroundImage: "url(https://i.postimg.cc/Y0rSTBZv/9264822.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              width: "100%",
+              minHeight: "700px",
+            }}
+          >
+            <div className="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <h1 className="text-4xl font-bold mb-4 dark:text-gray-800">
+                You havn't add any request post yet
+              </h1>
+              <Link to="/posts" className="btn text-base">
+                Add Volunteer Request Post
+              </Link>
+            </div>
           </div>
         ) : (
           <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
